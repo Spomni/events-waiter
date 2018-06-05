@@ -6,7 +6,7 @@ The constructor **"EventsWaiter"** creates an object that can call the callback 
 
 Include the file **"events-waiter.js"** into your project.
 
-    <script type="text/javascript" src="lib/include-mocha.js"></script>
+    <script type="text/javascript" src="events-waiter.js"></script>
     
 Create an instance of the class **"EventsWaiter"**.
 
