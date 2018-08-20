@@ -1,0 +1,31 @@
+{
+  "name": "@spomni/events-waiter",
+  "version": "1.0.0",
+  "description": "Call the callback when all registered events are completed.",
+  "main": "events-waiter.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --reporter progress",
+    "standart": "standart \"*.js\" \"test/**/*.js\" --env mocha --fix",
+    "prepublishOnly": "npm run standart && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spomni/events-waiter.git"
+  },
+  "author": "spomni",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Spomni/events-waiter/issues"
+  },
+  "homepage": "https://github.com/Spomni/events-waiter#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "jsdoc": "^3.5.5",
+    "mocha": "^5.2.0",
+    "standart": "^6.1.0"
+  }
+}

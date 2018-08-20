@@ -1,16 +1,16 @@
-# events-waiter.js
+# events-waiter
 
 The constructor **"EventsWaiter"** creates an object that can call the callback function when all registered events are completed.
 
 ## How to use
 
-Include the file **"events-waiter.js"** into your project.
+Install module into your project
 
-    <script type="text/javascript" src="events-waiter.js"></script>
+    $ npm i @spomni/events-waiter
     
 Create an instance of the class **"EventsWaiter"**.
 
-    var waiter = new EventsWaiter();
+    var waiter = new require('events-waiter')
     
 Register events on the method **"#addEvent"**.
 
@@ -42,4 +42,4 @@ If you want rallback an instance to the inital state, use the method **"#reset()
     
 ***
 
-Look additional information in the  [documentation](https://spomni.github.io/events-waiter.js).
+Look additional information in the  [documentation](https://spomni.github.io/events-waiter).
