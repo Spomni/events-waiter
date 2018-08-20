@@ -1,3 +1,7 @@
+(function(){
+
+module.exports = EventsWaiter
+
 /** Create an object that can call the callback function when all registered events are completed.
  * @constructor EventsWaiter
  */
@@ -132,3 +136,7 @@ EventsWaiter.prototype._areEventsCompleted = function(){
     if (this._events.length == 0) return true;
     return false;
 };
+
+
+
+})()
