@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "mocha --reporter progress",
-    "standart": "standart "*.js" "test/**/*.js" --env mocha --fix"
+    "standart": "standart \"*.js\" \"test/**/*.js\" --env mocha --fix",
+    "prepublishOnly": "npm run standart && npm test"
   },
   "repository": {
     "type": "git",
