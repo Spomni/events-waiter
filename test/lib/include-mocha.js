@@ -1,6 +1,5 @@
-//-- Define includeMocha on the first loading of this file.
-if ( includeMocha === undefined ){
-
+// -- Define includeMocha on the first loading of this file.
+if (includeMocha === undefined) {
   /** @function includeMocha()
     *
     * @description - Include mocha.js, chai.js (option), spec files and css styles in document. Setup and run mocha. Define global variables: mocha, chai (option), assert (option).
@@ -35,308 +34,307 @@ if ( includeMocha === undefined ){
     * @method includeStylesheet - Include a stylesheet file into the document.
     *
     */
-    function includeMocha ( option ){
-      var self = window.includeMocha;
+    function includeMocha(option) {
+      var self = window.includeMocha
 
-      //-- Check input params
-        //-- Check type of the param "option"
-          if ( !isString( option )
-            && !isArray( option )
-            && !isSimpleObject( option )
-            ){
-            return new Error( 'Invalid input param. The param "option" should be string or array or [object Object]' );
+      // -- Check input params
+        // -- Check type of the param "option"
+          if (!isString(option)
+            && !isArray(option)
+            && !isSimpleObject(option)
+            ) {
+            return new Error('Invalid input param. The param "option" should be string or array or [object Object]')
           }
-        //-- If the param "option" is array
-          if ( isArray( option ) ){
-            for (var i=0; i<option.length; i++){
-              if ( !isString( option[i] ) ){
-                return new Error( 'Invalid input param. Each element of the array "options" should be string.' );
+        // -- If the param "option" is array
+          if (isArray(option)) {
+            for (var i = 0; i < option.length; i++) {
+              if (!isString(option[i])) {
+                return new Error('Invalid input param. Each element of the array "options" should be string.')
               }
             }
-
           }
-        //-- If the param "option" is object
-          if ( isSimpleObject( option ) ){
-            //-- Should return an object of the class "Error" if the param "option.specPath" is not string or array.
-              if ( !isString( option.specPath )
-                && !isArray( option.specPath )
-                ){
-                return new Error( 'Invalid input param. The option "option.specPath" should be string or array.' )
+        // -- If the param "option" is object
+          if (isSimpleObject(option)) {
+            // -- Should return an object of the class "Error" if the param "option.specPath" is not string or array.
+              if (!isString(option.specPath)
+                && !isArray(option.specPath)
+                ) {
+                return new Error('Invalid input param. The option "option.specPath" should be string or array.')
               }
-            //-- Should return an object of the class "Error" if the param "option.specPath" is array and any its element is not string.
-              if ( isArray( option.specPath ) ){
-                for (var i=0; i<option.specPath.length; i++){
-                  if ( !isString( option.specPath[i] ) ){
-                    return new Error( 'Invalid input param. The option "option.specPath should contain only strings.' );
+            // -- Should return an object of the class "Error" if the param "option.specPath" is array and any its element is not string.
+              if (isArray(option.specPath)) {
+                for (var i = 0; i < option.specPath.length; i++) {
+                  if (!isString(option.specPath[i])) {
+                    return new Error('Invalid input param. The option "option.specPath should contain only strings.')
                   }
                 }
               }
-            //-- Should return an object of the class "Error" if the param "option.specRoot" is not string or null or undefined.
-              if ( !isString( option.specRoot )
-                && !isNull( option.specRoot )
-                && !isUndefined( option.specRoot )
-              ){
-                return new Error( 'Invalid input param. The param "option.specRoot" should be string or null or undefined.' );
+            // -- Should return an object of the class "Error" if the param "option.specRoot" is not string or null or undefined.
+              if (!isString(option.specRoot)
+                && !isNull(option.specRoot)
+                && !isUndefined(option.specRoot)
+              ) {
+                return new Error('Invalid input param. The param "option.specRoot" should be string or null or undefined.')
               }
 
-            //-- Should return an object of the class "Error" if the param "option.cssPath" is not string or array or null or undefined.
-              if ( !isString( option.cssPath )
-                && !isArray( option.cssPath )
-                && !isNull( option.cssPath )
-                && !isUndefined( option.cssPath )
-                ){
-                  return new Error( 'Invalid input param. The param "option.cssPath" should be string or array or null or undefined.' );
+            // -- Should return an object of the class "Error" if the param "option.cssPath" is not string or array or null or undefined.
+              if (!isString(option.cssPath)
+                && !isArray(option.cssPath)
+                && !isNull(option.cssPath)
+                && !isUndefined(option.cssPath)
+                ) {
+                  return new Error('Invalid input param. The param "option.cssPath" should be string or array or null or undefined.')
               }
-            //-- Should return an object of the class "Error" if the param "option.specPath" is array and any its alement is not string.
-              if ( isArray( option.cssPath ) ){
-                for (var i=0; i<option.cssPath.length; i++){
-                  if ( !isString( option.cssPath[i] ) ){
-                    return new Error( 'Invalid input param. The array "option.cssPath should contain only strings.' );
+            // -- Should return an object of the class "Error" if the param "option.specPath" is array and any its alement is not string.
+              if (isArray(option.cssPath)) {
+                for (var i = 0; i < option.cssPath.length; i++) {
+                  if (!isString(option.cssPath[i])) {
+                    return new Error('Invalid input param. The array "option.cssPath should contain only strings.')
                   }
                 }
+              }
+            // -- Should return an object of the class "Error" if the param "option.cssRoot" is not string or null or undefined.
+              if (!isString(option.cssRoot)
+                && !isNull(option.cssRoot)
+                && !isUndefined(option.cssRoot)
+                ) {
+                return new Error('Invalid input param. The param "option.cssRoot" should be string or null or undefined.')
+              }
+            // -- Should return an object of the class "Error" if the param "option.useChai" is not boolean or null or undefined.
+              if (!isBoolean(option.useChai)
+                && !isNull(option.useChai)
+                && !isUndefined(option.useChai)
+                ) {
+                return new Error('Invalid input param. The param "option.useChai" should be boolean or null or undefined.')
+              }
+            // -- Should return an object of the class "Error" if the param "option.defineAssert" is not boolean or null or undefined.
+              if (!isBoolean(option.defineAssert)
+                && !isNull(option.defineAssert)
+                && !isUndefined(option.defineAssert)
+                ) {
+                return new Error('Invalid input param. The param "option.defineAssert" should be boolean or null or undefined.')
+              }
+            // -- Should return an object of the class "Error" if the param "option.mochaPath" is not string or undefined.
+              if (!isString(option.mochaPath)
+                && !isUndefined(option.mochaPath)
+                ) {
+                return new Error('Invalid input param. The param "option.mochaPath" should be string or undefined.')
+              }
+            // -- Should return an object of the class "Error" if the param "option.selfPath" is not string or undefined.
+              if (!isString(option.selfPath)
+                && !isUndefined(option.selfPath)
+              ) {
+                return new Error('Invalid input param. The param "option.selfPath" should be string or undefined.')
+              }
 
+            // -- Should return an object of the class "Error" if the param "option.useChai" is true and the param "option.chaiPath" is not string or undefined.
+              if (option.useChai
+                && !isString(option.chaiPath)
+                && !isUndefined(option.chaiPath)
+                ) {
+                return new Error('Invalid input param. The param "option.chaiPath" should be string  or undefined.')
               }
-            //-- Should return an object of the class "Error" if the param "option.cssRoot" is not string or null or undefined.
-              if ( !isString( option.cssRoot )
-                && !isNull( option.cssRoot )
-                && !isUndefined( option.cssRoot )
-                ){
-                return new Error( 'Invalid input param. The param "option.cssRoot" should be string or null or undefined.' );
+            // -- Should return an object of the class "Error" if the param "option.libRoot" is not string or undefined.
+              if (!isString(option.libRoot)
+                && !isUndefined(option.libRoot)
+                ) {
+                return new Error('Invalid input param. The param "option.libRoot" should be string or undefined.')
               }
-            //-- Should return an object of the class "Error" if the param "option.useChai" is not boolean or null or undefined.
-              if ( !isBoolean( option.useChai )
-                && !isNull( option.useChai )
-                && !isUndefined( option.useChai )
-                ){
-                return new Error( 'Invalid input param. The param "option.useChai" should be boolean or null or undefined.' );
-              }
-            //-- Should return an object of the class "Error" if the param "option.defineAssert" is not boolean or null or undefined.
-              if ( !isBoolean( option.defineAssert )
-                && !isNull( option.defineAssert )
-                && !isUndefined( option.defineAssert )
-                ){
-                return new Error( 'Invalid input param. The param "option.defineAssert" should be boolean or null or undefined.' );
-              }
-            //-- Should return an object of the class "Error" if the param "option.mochaPath" is not string or undefined.
-              if ( !isString( option.mochaPath )
-                && !isUndefined( option.mochaPath )
-                ){
-                return new Error( 'Invalid input param. The param "option.mochaPath" should be string or undefined.' );
-              }
-            //-- Should return an object of the class "Error" if the param "option.selfPath" is not string or undefined.
-              if ( !isString( option.selfPath )
-                && !isUndefined( option.selfPath )
-              ){
-                return new Error( 'Invalid input param. The param "option.selfPath" should be string or undefined.' );
-              }
-
-            //-- Should return an object of the class "Error" if the param "option.useChai" is true and the param "option.chaiPath" is not string or undefined.
-              if ( option.useChai
-                && !isString( option.chaiPath )
-                && !isUndefined( option.chaiPath )
-                ){
-                return new Error( 'Invalid input param. The param "option.chaiPath" should be string  or undefined.' );
-              }
-            //-- Should return an object of the class "Error" if the param "option.libRoot" is not string or undefined.
-              if ( !isString( option.libRoot )
-                && !isUndefined( option.libRoot )
-                ){
-                return new Error( 'Invalid input param. The param "option.libRoot" should be string or undefined.' );
-              }
-            //-- Should return an object of the class "Error" if the param "option.mochaSetup" is not string or undefined or an object of the class "Object".
-              if ( !isString( option.mochaSetup )
-                && !isUndefined( option.mochaSetup )
-                && !isSimpleObject( option.mochaSetup )
-                ){
-                  return new Error( 'Invalid input param. The param "option.mochaSetup" should be string or undefined or an object of the class Object.' )
+            // -- Should return an object of the class "Error" if the param "option.mochaSetup" is not string or undefined or an object of the class "Object".
+              if (!isString(option.mochaSetup)
+                && !isUndefined(option.mochaSetup)
+                && !isSimpleObject(option.mochaSetup)
+                ) {
+                  return new Error('Invalid input param. The param "option.mochaSetup" should be string or undefined or an object of the class Object.')
               }
           }
 
       //
-      //-- Check global vars before init
-        if ( !isUndefined( window.mocha ) ){
-          return new Error( 'Tried redefine the global var "mocha".' );
+      // -- Check global vars before init
+        if (!isUndefined(window.mocha)) {
+          return new Error('Tried redefine the global var "mocha".')
         }
-        if ( ( option.useChai || isUndefined( option.useChai ) )
-          && !isUndefined( window.chai )
-          ){
-          return new Error( 'Tried redefine the global var "chai".' );
+        if ((option.useChai || isUndefined(option.useChai))
+          && !isUndefined(window.chai)
+          ) {
+          return new Error('Tried redefine the global var "chai".')
         }
-        if ( ( option.useChai || isUndefined( option.useChai ) )
-          && ( option.defineAssert || isUndefined( option.defineAssert ) )
-          && !isUndefined( window.assert )
-          ){
-          return new Error( 'Tried redefine the global var "assert".' );
+        if ((option.useChai || isUndefined(option.useChai))
+          && (option.defineAssert || isUndefined(option.defineAssert))
+          && !isUndefined(window.assert)
+          ) {
+          return new Error('Tried redefine the global var "assert".')
         }
       //
-      //-- init the private var "_thisScriptFirstNode"
+      // -- init the private var "_thisScriptFirstNode"
         var _thisScriptFirstNode = document.head.l
       //
-      //-- Init the member 'self.option'
+      // -- Init the member 'self.option'
 
-        self.option = {};
-        //-- Convert type of the input param "option"
-          if ( typeof( option ) == 'string'
+        self.option = {}
+        // -- Convert type of the input param "option"
+          if (typeof(option) === 'string'
             || option instanceof Array
-            ){
-            option = { specPath : option };
+            ) {
+            option = { specPath : option }
           }
 
-        //-- Init "specPath"
-          self.option.specPath = [];
-          if ( typeof( option.specPath ) == 'string' ){
-            self.option.specPath.push( option.specPath );
-          } else if ( option.specPath instanceof Array ){
-            for (var i=0; i<option.specPath.length; i++){
-              self.option.specPath.push( option.specPath[i] );
+        // -- Init "specPath"
+          self.option.specPath = []
+          if (typeof(option.specPath) === 'string') {
+            self.option.specPath.push(option.specPath)
+          } else if (option.specPath instanceof Array) {
+            for (var i = 0; i < option.specPath.length; i++) {
+              self.option.specPath.push(option.specPath[i])
             }
           }
-        //-- Init "specRoot"
-          if ( option.specRoot === undefined ){
-            self.option.specRoot = 'spec/';
+        // -- Init "specRoot"
+          if (option.specRoot === undefined) {
+            self.option.specRoot = 'spec/'
           } else {
-            self.option.specRoot = option.specRoot;
+            self.option.specRoot = option.specRoot
           }
-        //-- Init "cssPath"
-          if ( option.cssPath === null ){
-            self.option.cssPath = null;
+        // -- Init "cssPath"
+          if (option.cssPath === null) {
+            self.option.cssPath = null
           } else {
-            self.option.cssPath = [];
-            if ( option.cssPath === undefined ){
-              self.option.cssPath.push( "mocha.css" );
-            } else if ( typeof( option.cssPath ) == 'string' ){
-              self.option.cssPath.push( option.cssPath );
+            self.option.cssPath = []
+            if (option.cssPath === undefined) {
+              self.option.cssPath.push('mocha.css')
+            } else if (typeof(option.cssPath) === 'string') {
+              self.option.cssPath.push(option.cssPath)
             } else {
-              for (var i=0; i<option.cssPath.length; i++){
-                self.option.cssPath.push( option.cssPath[i] );
+              for (var i = 0; i < option.cssPath.length; i++) {
+                self.option.cssPath.push(option.cssPath[i])
               }
             }
           }
-        //-- Init "cssRoot"
-          if ( option.cssRoot === undefined ){
-            self.option.cssRoot = 'css/';
+        // -- Init "cssRoot"
+          if (option.cssRoot === undefined) {
+            self.option.cssRoot = 'css/'
           } else {
-            self.option.cssRoot = option.cssRoot;
+            self.option.cssRoot = option.cssRoot
           }
-        //-- Init "useChai"
-          if ( option.useChai === undefined ){
-            self.option.useChai = true;
+        // -- Init "useChai"
+          if (option.useChai === undefined) {
+            self.option.useChai = true
           } else {
-            self.option.useChai = option.useChai;
+            self.option.useChai = option.useChai
           }
-        //-- Init "defineAssert"
-          if ( option.defineAssert === undefined ){
-            self.option.defineAssert = true;
+        // -- Init "defineAssert"
+          if (option.defineAssert === undefined) {
+            self.option.defineAssert = true
           } else {
-            self.option.defineAssert = option.defineAssert;
+            self.option.defineAssert = option.defineAssert
           }
-        //-- Init "mochaPath"
-          if ( option.mochaPath === undefined ){
-            self.option.mochaPath = 'mocha.js';
+        // -- Init "mochaPath"
+          if (option.mochaPath === undefined) {
+            self.option.mochaPath = 'mocha.js'
           } else {
-            self.option.mochaPath = option.mochaPath;
+            self.option.mochaPath = option.mochaPath
           }
-        //-- Init "chaiPath"
-          if ( option.chaiPath === undefined ){
-            self.option.chaiPath = 'chai.js';
+        // -- Init "chaiPath"
+          if (option.chaiPath === undefined) {
+            self.option.chaiPath = 'chai.js'
           } else {
-            self.option.chaiPath = option.chaiPath;
+            self.option.chaiPath = option.chaiPath
           }
-        //-- Init "selfPath"
-          if ( option.selfPath === undefined ){
-            self.option.selfPath = 'include-mocha.js';
+        // -- Init "selfPath"
+          if (option.selfPath === undefined) {
+            self.option.selfPath = 'include-mocha.js'
           } else {
-            self.option.selfPath = option.selfPath;
+            self.option.selfPath = option.selfPath
           }
-        //-- Init "libRoot"
-          if ( option.libRoot === undefined ){
-            self.option.libRoot = 'lib/';
-          } else if ( option.libRoot === null ){
-            self.option.libRoot = null;
+        // -- Init "libRoot"
+          if (option.libRoot === undefined) {
+            self.option.libRoot = 'lib/'
+          } else if (option.libRoot === null) {
+            self.option.libRoot = null
           } else {
-            self.option.libRoot = option.libRoot;
+            self.option.libRoot = option.libRoot
           }
-        //-- Init "mochaSetup"
-          if ( option.mochaSetup === undefined ){
-            self.option.mochaSetup = "bdd";
+        // -- Init "mochaSetup"
+          if (option.mochaSetup === undefined) {
+            self.option.mochaSetup = 'bdd'
           } else {
-            self.option.mochaSetup = option.mochaSetup;
+            self.option.mochaSetup = option.mochaSetup
           }
         //
       //
-      //-- include stylesheets
-        if ( self.option.cssPath ){
-          self.option.cssPath.forEach(function( cssPath, i, cssPathArray){
-            var cssRoot = ( self.option.cssRoot ) ? self.option.cssRoot : "";
-            var link = self.includeStylesheet( cssRoot+cssPath );
-            link.includeMocha = true;
-          });
+      // -- include stylesheets
+        if (self.option.cssPath) {
+          self.option.cssPath.forEach(function(cssPath, i, cssPathArray) {
+            var cssRoot = (self.option.cssRoot) ? self.option.cssRoot : ''
+            var link = self.includeStylesheet(cssRoot + cssPath)
+            link.includeMocha = true
+          })
         }
       //
-      //-- include mocha.js
-        var mochaScript = null;
-        if ( !self.option.libRoot ){
-          mochaScript = self.includeScript( self.option.mochaPath ).includeMocha = true;
+      // -- include mocha.js
+        var mochaScript = null
+        if (!self.option.libRoot) {
+          mochaScript = self.includeScript(self.option.mochaPath).includeMocha = true
         } else {
-          mochaScript = self.includeScript( self.option.libRoot + self.option.mochaPath ).includeMocha = true;
+          mochaScript = self.includeScript(self.option.libRoot + self.option.mochaPath).includeMocha = true
         }
-        mochaScript.includeMocha = true;
+        mochaScript.includeMocha = true
       //
-      //-- include chai.js
-        if ( self.option.useChai ){
-          var chaiScript = null;
-          if ( !self.option.libRoot ){
-            chaiScript = self.includeScript( self.option.chaiPath ).includeMocha = true;
+      // -- include chai.js
+        if (self.option.useChai) {
+          var chaiScript = null
+          if (!self.option.libRoot) {
+            chaiScript = self.includeScript(self.option.chaiPath).includeMocha = true
           } else {
-            chaiScript = self.includeScript( self.option.libRoot + self.option.chaiPath ).includeMocha = true;
+            chaiScript = self.includeScript(self.option.libRoot + self.option.chaiPath).includeMocha = true
           }
-          chaiScript.includeMocha = true;
+          chaiScript.includeMocha = true
         }
       //
-      //-- reload this file
-        var selfScript = null;
-        if ( !self.option.libRoot ){
-          selfScript = self.includeScript( self.option.selfPath ).includeMocha = true;
+      // -- reload this file
+        var selfScript = null
+        if (!self.option.libRoot) {
+          selfScript = self.includeScript(self.option.selfPath).includeMocha = true
         } else {
-          selfScript = self.includeScript( self.option.libRoot + self.option.selfPath ).includeMocha = true;
+          selfScript = self.includeScript(self.option.libRoot + self.option.selfPath).includeMocha = true
         }
-        selfScript.includeMocha = true;
+        selfScript.includeMocha = true
       //
-      //-- Support functions
-        function isString( param ){
-          if ( typeof param == 'string' ) return true;
-          return false;
+      // -- Support functions
+        function isString(param) {
+          if (typeof param === 'string') return true
+          return false
         }
-        function isArray( param ){
-          if ( param instanceof Array ) return true;
-          return false;
+        function isArray(param) {
+          if (param instanceof Array) return true
+          return false
         }
-        function isSimpleObject( param ){
-          if ( typeof param == 'object'
+        function isSimpleObject(param) {
+          if (typeof param === 'object'
             && param !== null
             && param.toString() == '[object Object]'
-          ) return true;
+          ) return true
 
-          return false;
+          return false
         }
-        function isNull( param ){
-          if ( typeof param == 'object' && param === null )
-            return true;
-          return false;
+        function isNull(param) {
+          if (typeof param === 'object' && param === null)            {
+ return true
+}
+          return false
         }
-        function isUndefined( param ){
-          if ( param === undefined ) return true;
-          return false;
+        function isUndefined(param) {
+          if (param === undefined) return true
+          return false
         }
-        function isBoolean( param ){
-          if ( typeof param == 'boolean' ) return true;
-          return false;
+        function isBoolean(param) {
+          if (typeof param === 'boolean') return true
+          return false
         }
       //
     }
-    includeMocha.__proto__ = IncludeMocha.prototype;
-    includeMocha.option = null;
-    includeMocha.runner = null;
+    includeMocha.__proto__ = IncludeMocha.prototype
+    includeMocha.option = null
+    includeMocha.runner = null
   //
   /** @method includeScript() - Include in document a script file.
    * @memberOf includeMocha()
@@ -349,24 +347,23 @@ if ( includeMocha === undefined ){
    * @returns {HTMLScriptElement|Error}
    *
    */
-    includeMocha.includeScript = function( src, async ){
-      if ( typeof(src) != 'string' ){
-        return new Error('Invalid input param. The param "src" should be string.');
+    includeMocha.includeScript = function(src, async) {
+      if (typeof(src) !== 'string') {
+        return new Error('Invalid input param. The param "src" should be string.')
       };
-      if ( async !== undefined && typeof(async) != 'boolean' ){
-        return new Error('Invalid input param. The param "async" should be boolean or undefined.');
+      if (async !== undefined && typeof(async) !== 'boolean') {
+        return new Error('Invalid input param. The param "async" should be boolean or undefined.')
       }
 
-      async = async || false;
+      async = async || false
 
-      var script = document.createElement( 'script' );
-      script.src = src;
-      script.async = async;
+      var script = document.createElement('script')
+      script.src = src
+      script.async = async
 
-      document.head.appendChild( script );
+      document.head.appendChild(script)
 
-      return script;
-
+      return script
     }
   /** @method includeStylesheet() - Include in document a css file.
    * @memberOf includeMocha()
@@ -378,18 +375,18 @@ if ( includeMocha === undefined ){
    * @returns {HTMLLinkElement|Error}
    *
    */
-    includeMocha.includeStylesheet = function( href ){
-      if ( typeof(href) != 'string' ){
-        return new Error('Invalid input param. The param "href" should be string.');
+    includeMocha.includeStylesheet = function(href) {
+      if (typeof(href) !== 'string') {
+        return new Error('Invalid input param. The param "href" should be string.')
       }
 
-      var link = document.createElement( 'link' );
-      link.rel = "stylesheet";
-      link.href = href;
+      var link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = href
 
-      document.head.appendChild( link );
+      document.head.appendChild(link)
 
-      return link;
+      return link
     }
   /** @method onDOMContentLoaded() - execute mocha.run()
    * @memberOf includeMocha()
@@ -398,8 +395,8 @@ if ( includeMocha === undefined ){
    *
    * @returns {undefined}
    */
-    includeMocha.onDOMContentLoaded = function(){
-      includeMocha.runner = window.mocha.run();
+    includeMocha.onDOMContentLoaded = function() {
+      includeMocha.runner = window.mocha.run()
     }
   /** @method onScriptReloaded() - Setup mocha.js, define window.assert, add the event listener "onDOMContentLoaded" and include spec files into the document.
    * @memberOf includeMocha()
@@ -408,43 +405,43 @@ if ( includeMocha === undefined ){
    *
    * @returns {undefined}
    */
-    includeMocha.onScriptReloaded = function(){
-      var self = window.includeMocha;
-      var option = self.option;
+    includeMocha.onScriptReloaded = function() {
+      var self = window.includeMocha
+      var option = self.option
 
       // Setup mocha
-        window.mocha.setup( option.mochaSetup );
+        window.mocha.setup(option.mochaSetup)
       // define window.assert
-        if ( option.useChai && option.defineAssert ){
-          window.assert = window.chai.assert;
+        if (option.useChai && option.defineAssert) {
+          window.assert = window.chai.assert
         }
       // add the event listener "onDOMContentLoaded"
-        document.addEventListener('DOMContentLoaded', includeMocha.onDOMContentLoaded);
+        document.addEventListener('DOMContentLoaded', includeMocha.onDOMContentLoaded)
       // include spec files
-        option.specPath.forEach(function( specPath, i, specPathArray){
-          var specRoot = ( option.specRoot ) ? self.option.specRoot : "";
-          var script = self.includeScript( specRoot+specPath );
-          script.includeMocha = true;
-        });
-        
-      self.reloaded = true;
-      //-- reload this file
-        var selfScript = null;
-        if ( !self.option.libRoot ){
-          selfScript = self.includeScript( self.option.selfPath ).includeMocha = true;
+        option.specPath.forEach(function(specPath, i, specPathArray) {
+          var specRoot = (option.specRoot) ? self.option.specRoot : ''
+          var script = self.includeScript(specRoot + specPath)
+          script.includeMocha = true
+        })
+
+      self.reloaded = true
+      // -- reload this file
+        var selfScript = null
+        if (!self.option.libRoot) {
+          selfScript = self.includeScript(self.option.selfPath).includeMocha = true
         } else {
-          selfScript = self.includeScript( self.option.libRoot + self.option.selfPath ).includeMocha = true;
+          selfScript = self.includeScript(self.option.libRoot + self.option.selfPath).includeMocha = true
         }
-        selfScript.includeMocha = true;
+        selfScript.includeMocha = true
       //
     }
   //
-  function IncludeMocha(){
+  function IncludeMocha() {
   }
-  IncludeMocha.prototype.__proto__ = Function.prototype;
+  IncludeMocha.prototype.__proto__ = Function.prototype
   //
-} else if ( !window.includeMocha.reloaded ){
-    window.includeMocha.onScriptReloaded();
+} else if (!window.includeMocha.reloaded) {
+    window.includeMocha.onScriptReloaded()
 } else {
-  window.includeMocha.onDOMContentLoaded();
+  window.includeMocha.onDOMContentLoaded()
 }

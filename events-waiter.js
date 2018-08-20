@@ -1,5 +1,7 @@
 (function(){
 
+alert(5 - undefined)
+
 module.exports = EventsWaiter
 
 /** Create an object that can call the callback function when all registered events are completed.
