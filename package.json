@@ -1,6 +1,6 @@
 {
   "name": "@spomni/events-waiter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Call the callback when all registered events are completed.",
   "main": "events-waiter.js",
   "directories": {
